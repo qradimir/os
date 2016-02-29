@@ -6,7 +6,7 @@
 const size_t BUF_CAPACITY = 1000;
 
 
-#define CHECK_ERROR(t) if ((t) == -1) { fprintf(stderr, "error : %s\n",  strerror(errno)); return; }
+#define CHECK_ERROR(t) if ((t) == -1) { fprintf(stderr, "error : %s\n",  strerror(errno)); return 1; }
 
 int main() 
 {
