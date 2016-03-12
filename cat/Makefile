@@ -4,4 +4,4 @@ cat : cat.c
 	gcc cat.c -o cat
 
 clean :
-	rm cat
+	rm -f cat
