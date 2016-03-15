@@ -6,13 +6,19 @@
 const size_t BUF_CAPACITY = 1000;
 
 
-#define CHECK_ERROR(t) if ((t) == -1) { fprintf(stderr, "error : %s\n",  strerror(errno)); return 1; }
+#define CHECK_ERROR(t) if ((t) == -1) { continue; }
 
-int main() 
+int main(size_t argc, char** argv) 
 {
+	size_t fd;
+	if (argc == 2) {
+		fd = open(argv[1]);
+	} else {
+		fd = STDIN_FILENO;
+	}
 	char buffer[BUF_CAPACITY];
 	ssize_t size;
-	while ((size = read(STDIN_FILENO, buffer, BUF_CAPACITY)) != 0) 
+	while ((size = read(fd, buffer, BUF_CAPACITY)) != 0) 
 	{
 		CHECK_ERROR(size);		
 		ssize_t writen = 0;
