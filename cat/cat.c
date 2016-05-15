@@ -6,10 +6,7 @@
 
 const size_t BUF_CAPACITY = 1000;
 
-
-
-int main(size_t argc, char** argv) 
-{
+int main(size_t argc, char** argv) {
 	size_t fd;
 	if (argc == 2) {
 		fd = open(argv[1], O_RDONLY);
