@@ -122,7 +122,8 @@ int main() {
 		}
 		size_t size = (size_t) ssize;
 		command	+= string{buffer, size};
-	
+
+		
 		size_t newlinechar = command.find('\n', checked_symbols);
 		if (newlinechar == string::npos) {
 			checked_symbols = command.size();
@@ -130,6 +131,12 @@ int main() {
 		} else {
 			checked_symbols = newlinechar;
 		}
+
+		if (newlinechar == 0) {
+			command = command.substr(1);
+			write_all(STDOUT_FILENO, INV, 2);
+			continue;
+		}	
 
 		vector<string> subcommands{};
 		split(command.substr(0, checked_symbols), '|', subcommands);
@@ -156,6 +163,7 @@ int main() {
 			for (size_t pid : children) 
 				kill(pid, SIGINT);		
 		}
+
 
 		children.clear();
 		checked_symbols = 0;
